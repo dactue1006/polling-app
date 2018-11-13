@@ -13,19 +13,13 @@ import org.hibernate.annotations.NaturalId;
 import com.example.demo.model.audit.DateAudit;
 
 
+//@UniqueConstraint use for multiple unique key in table.
+//So you you can use @Column(unique=true)
 @Entity
-@Table(name = "users", uniqueConstraints = {
-		@UniqueConstraint(columnNames = {
-				"username"
-		}),
-		@UniqueConstraint(columnNames = {
-				"email"
-		})
-})
-
-public class User extends DateAudit{
+@Table(name = "users")
+public class User extends DateAudit {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank
@@ -34,34 +28,36 @@ public class User extends DateAudit{
 	
 	@NotBlank
 	@Size(max = 15)
+	@Column(unique = true)
 	private String username;
 	
 	@NaturalId
-	@NotBlank
-	@Size(max = 40)
 	@Email
+	@Size(max = 40)
+	@NotBlank
+	@Column(unique = true)
 	private String email;
 	
 	@NotBlank
-	@Size(max = 100)
-	private String passoword;
+	@Size(max = 50)
+	private String password;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_roles",
-			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "role-id"))
-	private Set<Role> roles = new HashSet<>();
+    	@JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 	
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public User(String name, String username, String email, String password) {
-		this.name = name;
-		this.username = username;
-		this.email = email;
-		this.passoword = password;
-	}
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
 	public Long getId() {
 		return id;
@@ -95,12 +91,12 @@ public class User extends DateAudit{
 		this.email = email;
 	}
 
-	public String getPassoword() {
-		return passoword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPassoword(String passoword) {
-		this.passoword = passoword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Set<Role> getRoles() {
@@ -110,5 +106,6 @@ public class User extends DateAudit{
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+	
 	
 }

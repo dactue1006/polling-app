@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.example.demo.security.CustomUserDetailsService;
 import com.example.demo.security.JwtAuthenticationEntryPoint;
 
 @Configuration
@@ -39,9 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		AuthenticationManagerBuilder
-			.userDetailService(customUserDetailsService)
-			.passwordEndcoder(passwordEncoder());
+		auth
+			.userDetailsService(customUserDetailsService)
+			.passwordEncoder(passwordEncoder());
 	}
 	
 	@Bean(BeanIds.AUTHENTICATION_MANAGER)

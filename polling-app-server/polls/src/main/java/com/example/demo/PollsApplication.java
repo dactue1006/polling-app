@@ -9,11 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
-@SpringBootApplication
+
 @EntityScan(basePackageClasses = {
 			PollsApplication.class,
 			Jsr310JpaConverters.class
 })
+@SpringBootApplication
 public class PollsApplication {
 	
 	@PostConstruct

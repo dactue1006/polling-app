@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import com.example.demo.exception.AppException;
 import com.example.demo.model.Role;

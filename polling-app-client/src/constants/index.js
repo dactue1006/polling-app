@@ -1,4 +1,5 @@
-export const API_BASE_URL = 'http://localhost:5000/api';
+export const API_BASE_URL = 'http://ec2-13-229-225-223.ap-southeast-1.compute.amazonaws.com:5000/api';
+//export const API_BASE_URL = 'http://localhost:5000/api';
 //export const API_BASE_URL = '/api';
 export const ACCESS_TOKEN = 'accessToken';
 

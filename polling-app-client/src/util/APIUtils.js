@@ -40,7 +40,6 @@ export function createPoll(pollData) {
         body: JSON.stringify(pollData)         
     });
 }
-
 export function castVote(voteData) {
     return request({
         url: API_BASE_URL + "/polls/" + voteData.pollId + "/votes",
